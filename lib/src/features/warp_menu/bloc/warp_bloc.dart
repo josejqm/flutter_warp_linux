@@ -11,48 +11,54 @@ export 'warp_event.dart';
 export 'warp_state.dart';
 
 class WarpBloc extends Bloc<WarpEvent, WarpState> {
-  WarpBloc(this.warpRepository) : super(const WarpState.disconnected()) {
+  WarpBloc(this.warpRepository) : super(WarpState.disconnected("Unknow")) {
     on<WarpEvent>(
-      (event, emit) => event.when(
-        connect: _mapConnectEvent,
-        disconnect: _mapDisconnectEvent,
+      (event, emit) async => event.when(
+        connect: () => _onConnect(emit),
+        disconnect: () => _onDisconnect(emit),
       ),
     );
-    _checkState();
+    _checkWarpConnection();
   }
-
   final WarpRepositoryImpl warpRepository;
 
-  Stream<WarpState> _checkState() async* {
-    yield const WarpState.connecting();
+  Future<void> _checkWarpConnection() async {
+    final ip = await warpRepository.getIp();
+
     if (await warpRepository.isConnected()) {
-      yield const WarpState.connected();
+      emit(WarpState.connected(ip));
     } else {
-      yield const WarpState.disconnected();
+      emit(WarpState.disconnected(ip));
     }
   }
 
-  Stream<WarpState> _mapConnectEvent() async* {
+  Future<void> _onConnect(Emitter<WarpState> emit) async {
+    emit(const WarpState.connecting());
     try {
       await warpRepository.connect();
-      _checkState();
+      await Future.delayed(const Duration(seconds: 2));
+      final ip = await warpRepository.getIp();
+      emit(WarpState.connected(ip));
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  Stream<WarpState> _mapDisconnectEvent() async* {
+  Future<void> _onDisconnect(Emitter<WarpState> emit) async {
+    emit(const WarpState.disconnecting());
     try {
       await warpRepository.disconnect();
-      _checkState();
+      await Future.delayed(const Duration(seconds: 2));
+      final ip = await warpRepository.getIp();
+      emit(WarpState.disconnected(ip));
     } on Exception catch (e) {
       debugPrint(e.toString());
     }
   }
 
   void toogleConnection() => state.maybeWhen(
-        connected: () => add(const WarpEvent.disconnect()),
-        disconnected: () => add(const WarpEvent.connect()),
+        connected: (_) => add(const WarpEvent.disconnect()),
+        disconnected: (_) => add(const WarpEvent.connect()),
         orElse: () {},
       );
 }

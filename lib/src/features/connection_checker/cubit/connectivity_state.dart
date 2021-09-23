@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'connection_state.freezed.dart';
+part 'connectivity_state.freezed.dart';
 
 @freezed
 abstract class ConnectivityState with _$ConnectivityState {

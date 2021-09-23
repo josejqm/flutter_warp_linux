@@ -17,16 +17,20 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$WarpStateTearOff {
   const _$WarpStateTearOff();
 
-  WarpStateConnected connected() {
-    return const WarpStateConnected();
+  WarpStateConnected connected(String ip) {
+    return WarpStateConnected(
+      ip,
+    );
   }
 
   WarpStateConnecting connecting() {
     return const WarpStateConnecting();
   }
 
-  WarpStateDisconnected disconnected() {
-    return const WarpStateDisconnected();
+  WarpStateDisconnected disconnected(String ip) {
+    return WarpStateDisconnected(
+      ip,
+    );
   }
 
   WarpStateDisconnecting disconnecting() {
@@ -41,25 +45,25 @@ const $WarpState = _$WarpStateTearOff();
 mixin _$WarpState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connected,
+    required TResult Function(String ip) connected,
     required TResult Function() connecting,
-    required TResult Function() disconnected,
+    required TResult Function(String ip) disconnected,
     required TResult Function() disconnecting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
     required TResult orElse(),
   }) =>
@@ -111,6 +115,7 @@ abstract class $WarpStateConnectedCopyWith<$Res> {
   factory $WarpStateConnectedCopyWith(
           WarpStateConnected value, $Res Function(WarpStateConnected) then) =
       _$WarpStateConnectedCopyWithImpl<$Res>;
+  $Res call({String ip});
 }
 
 /// @nodoc
@@ -123,6 +128,18 @@ class _$WarpStateConnectedCopyWithImpl<$Res>
 
   @override
   WarpStateConnected get _value => super._value as WarpStateConnected;
+
+  @override
+  $Res call({
+    Object? ip = freezed,
+  }) {
+    return _then(WarpStateConnected(
+      ip == freezed
+          ? _value.ip
+          : ip // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
@@ -130,60 +147,74 @@ class _$WarpStateConnectedCopyWithImpl<$Res>
 class _$WarpStateConnected
     with DiagnosticableTreeMixin
     implements WarpStateConnected {
-  const _$WarpStateConnected();
+  _$WarpStateConnected(this.ip);
+
+  @override
+  final String ip;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WarpState.connected()';
+    return 'WarpState.connected(ip: $ip)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'WarpState.connected'));
+    properties
+      ..add(DiagnosticsProperty('type', 'WarpState.connected'))
+      ..add(DiagnosticsProperty('ip', ip));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WarpStateConnected);
+    return identical(this, other) ||
+        (other is WarpStateConnected &&
+            (identical(other.ip, ip) ||
+                const DeepCollectionEquality().equals(other.ip, ip)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(ip);
+
+  @JsonKey(ignore: true)
+  @override
+  $WarpStateConnectedCopyWith<WarpStateConnected> get copyWith =>
+      _$WarpStateConnectedCopyWithImpl<WarpStateConnected>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connected,
+    required TResult Function(String ip) connected,
     required TResult Function() connecting,
-    required TResult Function() disconnected,
+    required TResult Function(String ip) disconnected,
     required TResult Function() disconnecting,
   }) {
-    return connected();
+    return connected(ip);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
   }) {
-    return connected?.call();
+    return connected?.call(ip);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
     required TResult orElse(),
   }) {
     if (connected != null) {
-      return connected();
+      return connected(ip);
     }
     return orElse();
   }
@@ -227,7 +258,12 @@ class _$WarpStateConnected
 }
 
 abstract class WarpStateConnected implements WarpState {
-  const factory WarpStateConnected() = _$WarpStateConnected;
+  factory WarpStateConnected(String ip) = _$WarpStateConnected;
+
+  String get ip => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WarpStateConnectedCopyWith<WarpStateConnected> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -278,9 +314,9 @@ class _$WarpStateConnecting
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connected,
+    required TResult Function(String ip) connected,
     required TResult Function() connecting,
-    required TResult Function() disconnected,
+    required TResult Function(String ip) disconnected,
     required TResult Function() disconnecting,
   }) {
     return connecting();
@@ -289,9 +325,9 @@ class _$WarpStateConnecting
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
   }) {
     return connecting?.call();
@@ -300,9 +336,9 @@ class _$WarpStateConnecting
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
     required TResult orElse(),
   }) {
@@ -359,6 +395,7 @@ abstract class $WarpStateDisconnectedCopyWith<$Res> {
   factory $WarpStateDisconnectedCopyWith(WarpStateDisconnected value,
           $Res Function(WarpStateDisconnected) then) =
       _$WarpStateDisconnectedCopyWithImpl<$Res>;
+  $Res call({String ip});
 }
 
 /// @nodoc
@@ -371,6 +408,18 @@ class _$WarpStateDisconnectedCopyWithImpl<$Res>
 
   @override
   WarpStateDisconnected get _value => super._value as WarpStateDisconnected;
+
+  @override
+  $Res call({
+    Object? ip = freezed,
+  }) {
+    return _then(WarpStateDisconnected(
+      ip == freezed
+          ? _value.ip
+          : ip // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
@@ -378,60 +427,75 @@ class _$WarpStateDisconnectedCopyWithImpl<$Res>
 class _$WarpStateDisconnected
     with DiagnosticableTreeMixin
     implements WarpStateDisconnected {
-  const _$WarpStateDisconnected();
+  _$WarpStateDisconnected(this.ip);
+
+  @override
+  final String ip;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WarpState.disconnected()';
+    return 'WarpState.disconnected(ip: $ip)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'WarpState.disconnected'));
+    properties
+      ..add(DiagnosticsProperty('type', 'WarpState.disconnected'))
+      ..add(DiagnosticsProperty('ip', ip));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WarpStateDisconnected);
+    return identical(this, other) ||
+        (other is WarpStateDisconnected &&
+            (identical(other.ip, ip) ||
+                const DeepCollectionEquality().equals(other.ip, ip)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(ip);
+
+  @JsonKey(ignore: true)
+  @override
+  $WarpStateDisconnectedCopyWith<WarpStateDisconnected> get copyWith =>
+      _$WarpStateDisconnectedCopyWithImpl<WarpStateDisconnected>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connected,
+    required TResult Function(String ip) connected,
     required TResult Function() connecting,
-    required TResult Function() disconnected,
+    required TResult Function(String ip) disconnected,
     required TResult Function() disconnecting,
   }) {
-    return disconnected();
+    return disconnected(ip);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
   }) {
-    return disconnected?.call();
+    return disconnected?.call(ip);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
     required TResult orElse(),
   }) {
     if (disconnected != null) {
-      return disconnected();
+      return disconnected(ip);
     }
     return orElse();
   }
@@ -475,7 +539,12 @@ class _$WarpStateDisconnected
 }
 
 abstract class WarpStateDisconnected implements WarpState {
-  const factory WarpStateDisconnected() = _$WarpStateDisconnected;
+  factory WarpStateDisconnected(String ip) = _$WarpStateDisconnected;
+
+  String get ip => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WarpStateDisconnectedCopyWith<WarpStateDisconnected> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -526,9 +595,9 @@ class _$WarpStateDisconnecting
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connected,
+    required TResult Function(String ip) connected,
     required TResult Function() connecting,
-    required TResult Function() disconnected,
+    required TResult Function(String ip) disconnected,
     required TResult Function() disconnecting,
   }) {
     return disconnecting();
@@ -537,9 +606,9 @@ class _$WarpStateDisconnecting
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
   }) {
     return disconnecting?.call();
@@ -548,9 +617,9 @@ class _$WarpStateDisconnecting
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connected,
+    TResult Function(String ip)? connected,
     TResult Function()? connecting,
-    TResult Function()? disconnected,
+    TResult Function(String ip)? disconnected,
     TResult Function()? disconnecting,
     required TResult orElse(),
   }) {

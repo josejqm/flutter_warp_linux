@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:flutter_warp_linux/src/assets/app_messages.dart';
-import 'package:flutter_warp_linux/src/assets/app_svg.dart';
+import '../../../../../constants/assets.dart';
+import '../../../../../constants/messages.dart';
 import '../../bloc/warp_bloc.dart';
 
 class WarpSwitch extends StatelessWidget {
@@ -17,9 +17,9 @@ class WarpSwitch extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SvgPicture.asset(
-          AppSvg.cloudfareLogoBig,
-          height: 100,
-          width: 100,
+          Assets.assetsSvgCloudflare,
+          height: 150,
+          width: 150,
         ),
         const SizedBox(height: 20),
         Wrap(
@@ -27,6 +27,7 @@ class WarpSwitch extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           children: const [
             _ConnectingLoader(),
+            SizedBox(width: 15.0),
             _ConnectionLabel(),
           ],
         ),
@@ -62,10 +63,10 @@ class _ConnectionLabel extends StatelessWidget {
     return BlocBuilder<WarpBloc, WarpState>(
       builder: (context, state) => Text(
         state.when(
-          connected: () => AppMessages.connected,
-          connecting: () => AppMessages.connecting,
-          disconnected: () => AppMessages.disconnected,
-          disconnecting: () => AppMessages.disconnecting,
+          connected: (_) => Message.connected,
+          connecting: () => Message.connecting,
+          disconnected: (_) => Message.disconnected,
+          disconnecting: () => Message.disconnecting,
         ),
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.headline2,
@@ -83,8 +84,9 @@ class _ConnectionSwitcher extends StatelessWidget {
       builder: (context, state) {
         return FlutterSwitch(
           height: 75,
-          width: 100,
+          width: 150,
           toggleSize: 50,
+          borderRadius: 30,
           activeColor: Theme.of(context).primaryColor,
           onToggle: (_) =>
               BlocProvider.of<WarpBloc>(context).toogleConnection(),

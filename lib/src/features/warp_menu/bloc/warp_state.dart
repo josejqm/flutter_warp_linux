@@ -5,8 +5,8 @@ part 'warp_state.freezed.dart';
 
 @freezed
 abstract class WarpState with _$WarpState {
-  const factory WarpState.connected() = WarpStateConnected;
+  factory WarpState.connected(String ip) = WarpStateConnected;
   const factory WarpState.connecting() = WarpStateConnecting;
-  const factory WarpState.disconnected() = WarpStateDisconnected;
+  factory WarpState.disconnected(String ip) = WarpStateDisconnected;
   const factory WarpState.disconnecting() = WarpStateDisconnecting;
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:process_run/shell.dart';
 
 import 'warp_repository_i.dart';
@@ -19,5 +20,13 @@ class WarpRepositoryImpl extends WarpRepository {
   Future<bool> isConnected() async {
     final response = await _shell.run(_vpnCheck);
     return response.outText.contains('warp=on');
+  }
+
+  @override
+  Future<String> getIp() async {
+    final response = await _shell.run(_vpnCheck);
+    final ip =
+        response.outLines.firstWhere((element) => element.startsWith("ip"));
+    return ip;
   }
 }

@@ -1,14 +1,19 @@
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'constants/sizes.dart';
 import 'simple_bloc_observer.dart';
 import 'src/features/warp_menu/presentation/page/warp_page.dart';
 
 import 'src/themes/themes.dart';
 
-void main() {
+Future<void> main() async {
   Bloc.observer = SimpleBlocObserver();
-  runApp(const MyApp());
+
+  runApp(EasyDynamicThemeWidget(child: const MyApp()));
+
+  await DesktopWindow.setMinWindowSize(WindowSize.size);
+  await DesktopWindow.setMaxWindowSize(WindowSize.size);
 }
 
 class MyApp extends StatelessWidget {
@@ -16,18 +21,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData warpLightTheme = ThemeData(
-      textTheme: GoogleFonts.barlowTextTheme(),
-      primaryColor: AppColor.primaryColor,
-      progressIndicatorTheme: const ProgressIndicatorThemeData(
-        color: AppColor.primaryColor,
-        linearMinHeight: 20.0,
-      ),
-    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       theme: warpLightTheme,
+      darkTheme: warpDarkTheme,
+      themeMode: EasyDynamicTheme.of(context).themeMode,
       home: const WarpPage(),
     );
   }
