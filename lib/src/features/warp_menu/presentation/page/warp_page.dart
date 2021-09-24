@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:flutter_warp_linux/src/themes/themes.dart';
+import 'package:flutter_warp_linux/constants/sizes.dart';
+import '../../../../../constants/themes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../constants/assets.dart';
 import '../../../../../constants/messages.dart';
@@ -57,7 +58,6 @@ class WarpView extends StatelessWidget {
           ],
         ),
         actions: const [
-          _ThemeSwitcher(),
           SizedBox(width: 10),
         ],
       ),
@@ -70,33 +70,6 @@ class WarpView extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class _ThemeSwitcher extends StatelessWidget {
-  const _ThemeSwitcher({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // return DayNightSwitcher(
-    //   isDarkModeEnabled:
-    //       EasyDynamicTheme.of(context).themeMode == ThemeMode.dark,
-    //   sunColor: AppColors.primaryColor,
-    //   onStateChanged: (_) => EasyDynamicTheme.of(context).changeTheme(),
-    // );
-    // return FlutterSwitch(
-    //   value: EasyDynamicTheme.of(context).themeMode == ThemeMode.dark,
-    //   onToggle: (_) => EasyDynamicTheme.of(context).changeTheme(),
-    // );
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        const FaIcon(FontAwesomeIcons.moon),
-        EasyDynamicThemeSwitch(),
-      ],
     );
   }
 }
@@ -117,7 +90,7 @@ class _OfflineView extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Text(
-          Message.noInternetConnection,
+          Messages.noInternetConnection,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headline4,
         ),

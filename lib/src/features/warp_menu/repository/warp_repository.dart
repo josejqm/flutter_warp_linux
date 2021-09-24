@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
+import 'package:flutter_warp_linux/src/features/warp_menu/repository/warp_status.dart';
 import 'package:process_run/shell.dart';
 
 import 'warp_repository_i.dart';
@@ -17,16 +20,34 @@ class WarpRepositoryImpl extends WarpRepository {
   Future<void> disconnect() async => _shell.run(_vpnDisconnect);
 
   @override
-  Future<bool> isConnected() async {
-    final response = await _shell.run(_vpnCheck);
-    return response.outText.contains('warp=on');
+  Future<WarpStatus> getWarpStatus() async {
+    final response = await _shell.run(_vpnCheck).timeout(
+      const Duration(seconds: 10),
+      onTimeout: () {
+        throw const SocketException("Error timeout");
+      },
+    );
+    final isConnected = response.outText.contains('warp=on');
+    final ip = response.outLines.firstWhere((l) => l.startsWith("ip"));
+    return WarpStatus(ip: ip, isConnected: isConnected);
   }
 
-  @override
-  Future<String> getIp() async {
-    final response = await _shell.run(_vpnCheck);
-    final ip =
-        response.outLines.firstWhere((element) => element.startsWith("ip"));
-    return ip;
-  }
+  // @override
+  // Future<bool> isConnected() async {
+  //   final response = await _shell.run(_vpnCheck).timeout(
+  //     const Duration(seconds: 10),
+  //     onTimeout: () {
+  //       throw const SocketException("Error timeout");
+  //     },
+  //   );
+  //   return response.outText.contains('warp=on');
+  // }
+
+  // @override
+  // Future<String> getIp() async {
+  //   final response = await _shell.run(_vpnCheck);
+  //   final ip =
+  //       response.outLines.firstWhere((element) => element.startsWith("ip"));
+  //   return ip;
+  // }
 }

@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_warp_linux/constants/sizes.dart';
 
 import '../repository/warp_repository.dart';
 import 'warp_event.dart';
@@ -12,23 +14,24 @@ export 'warp_state.dart';
 
 class WarpBloc extends Bloc<WarpEvent, WarpState> {
   WarpBloc(this.warpRepository) : super(WarpState.disconnected("Unknow")) {
-    on<WarpEvent>(
-      (event, emit) async => event.when(
+    on<WarpEvent>((event, emit) async {
+      await event.when(
         connect: () => _onConnect(emit),
         disconnect: () => _onDisconnect(emit),
-      ),
-    );
+      );
+    });
     _checkWarpConnection();
   }
   final WarpRepositoryImpl warpRepository;
 
   Future<void> _checkWarpConnection() async {
-    final ip = await warpRepository.getIp();
-
-    if (await warpRepository.isConnected()) {
-      emit(WarpState.connected(ip));
+    emit(const WarpState.checking());
+    final status = await warpRepository.getWarpStatus();
+    // emit(WarpState.failed("Error while checking"));
+    if (status.isConnected) {
+      emit(WarpState.connected(status.ip));
     } else {
-      emit(WarpState.disconnected(ip));
+      emit(WarpState.disconnected(status.ip));
     }
   }
 
@@ -37,10 +40,12 @@ class WarpBloc extends Bloc<WarpEvent, WarpState> {
     try {
       await warpRepository.connect();
       await Future.delayed(const Duration(seconds: 2));
-      final ip = await warpRepository.getIp();
-      emit(WarpState.connected(ip));
-    } catch (e) {
-      debugPrint(e.toString());
+      final status = await warpRepository.getWarpStatus();
+      if (status.isConnected) {
+        emit(WarpState.connected(status.ip));
+      }
+    } on SocketException catch (e) {
+      emit(WarpState.failed(e.message));
     }
   }
 
@@ -49,16 +54,19 @@ class WarpBloc extends Bloc<WarpEvent, WarpState> {
     try {
       await warpRepository.disconnect();
       await Future.delayed(const Duration(seconds: 2));
-      final ip = await warpRepository.getIp();
-      emit(WarpState.disconnected(ip));
-    } on Exception catch (e) {
-      debugPrint(e.toString());
+      final status = await warpRepository.getWarpStatus();
+      if (!status.isConnected) {
+        emit(WarpState.disconnected(status.ip));
+      }
+    } on SocketException catch (e) {
+      emit(WarpState.failed(e.message));
     }
   }
 
   void toogleConnection() => state.maybeWhen(
         connected: (_) => add(const WarpEvent.disconnect()),
         disconnected: (_) => add(const WarpEvent.connect()),
+        failed: (_) => add(const WarpEvent.connect()),
         orElse: () {},
       );
 }

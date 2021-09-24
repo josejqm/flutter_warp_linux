@@ -1,13 +1,14 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'constants/sizes.dart';
 import 'simple_bloc_observer.dart';
 import 'src/features/warp_menu/presentation/page/warp_page.dart';
-
-import 'src/themes/themes.dart';
+import 'constants/themes.dart';
 
 Future<void> main() async {
+  //WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
 
   runApp(EasyDynamicThemeWidget(child: const MyApp()));

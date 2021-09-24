@@ -49,6 +49,7 @@ class _ConnectingLoader extends StatelessWidget {
       builder: (context, state) => state.maybeWhen(
         connecting: () => const CircularProgressIndicator(),
         disconnecting: () => const CircularProgressIndicator(),
+        checking: () => const CircularProgressIndicator(),
         orElse: () => Container(),
       ),
     );
@@ -63,10 +64,12 @@ class _ConnectionLabel extends StatelessWidget {
     return BlocBuilder<WarpBloc, WarpState>(
       builder: (context, state) => Text(
         state.when(
-          connected: (_) => Message.connected,
-          connecting: () => Message.connecting,
-          disconnected: (_) => Message.disconnected,
-          disconnecting: () => Message.disconnecting,
+          connected: (_) => Messages.connected,
+          connecting: () => Messages.connecting,
+          disconnected: (_) => Messages.disconnected,
+          disconnecting: () => Messages.disconnecting,
+          checking: () => Messages.checking,
+          failed: (String errorMessage) => Messages.failed,
         ),
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.headline2,
@@ -80,7 +83,13 @@ class _ConnectionSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WarpBloc, WarpState>(
+    return BlocConsumer<WarpBloc, WarpState>(
+      listener: (context, state) {
+        state.maybeWhen(
+          failed: (message) => _showError(context, message),
+          orElse: () {},
+        );
+      },
       builder: (context, state) {
         return FlutterSwitch(
           height: 75,
@@ -94,5 +103,27 @@ class _ConnectionSwitcher extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _showError(BuildContext context, String message) {
+    final bottomSheet = Scaffold.of(context).showBottomSheet(
+      (context) => Container(
+        color: Colors.red.withOpacity(0.6),
+        width: double.infinity,
+        height: 50,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              message,
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ),
+        ),
+      ),
+    );
+    Future.delayed(const Duration(seconds: 2))
+        .then((value) => bottomSheet.close.call());
   }
 }
