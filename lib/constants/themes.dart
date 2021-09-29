@@ -20,13 +20,10 @@ final ThemeData _base = ThemeData(
 );
 
 final ThemeData warpLightTheme = _base.copyWith(
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.canvasLightColor,
-    iconTheme: const IconThemeData(color: Colors.grey),
+    iconTheme: IconThemeData(color: Colors.grey),
     elevation: 0.0,
-    titleTextStyle: GoogleFonts.barlowTextTheme(ThemeData.light().textTheme)
-        .headline2!
-        .copyWith(fontWeight: FontWeight.bold),
   ),
   textTheme: _appTextTheme,
   canvasColor: AppColors.canvasLightColor,
@@ -35,11 +32,9 @@ final ThemeData warpLightTheme = _base.copyWith(
 );
 
 final ThemeData warpDarkTheme = _base.copyWith(
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.canvasDarkColor,
-    iconTheme: const IconThemeData(color: Colors.white),
-    titleTextStyle:
-        GoogleFonts.barlowTextTheme(ThemeData.dark().textTheme).headline4,
+    iconTheme: IconThemeData(color: Colors.white),
     elevation: 0.0,
   ),
   textTheme: GoogleFonts.barlowTextTheme(ThemeData.dark().textTheme),

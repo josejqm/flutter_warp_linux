@@ -1,4 +1,4 @@
-import 'package:flutter_warp_linux/src/features/warp_menu/repository/warp_status.dart';
+import 'warp_status.dart';
 
 abstract class WarpRepository {
   Future<void> connect();

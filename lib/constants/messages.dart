@@ -7,4 +7,6 @@ abstract class Messages {
   static const failed = "Sorry, try again";
   static const checking = "Checking";
   static const appBarTitle = "Cloudflare Warp";
+  static const ipUnknow = "ip=unknow";
+
 }

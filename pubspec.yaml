@@ -57,10 +57,10 @@ dev_dependencies:
   freezed: ^0.14.5
   lint: ^1.7.2
 
-flutter_assets:
-  assets_path: assets/
-  output_path: lib/constants/
-  filename: assets.dart
+
+flutter_gen:
+  output: lib/src/presentation/app/assets # Optional (default: lib/gen/)
+  lineLength: 80 # Optional (default: 80)
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_warp_linux/src/features/warp_menu/repository/warp_status.dart';
 import 'package:process_run/shell.dart';
 
 import 'warp_repository_i.dart';
+import 'warp_status.dart';
 
 const _vpnConnect = 'warp-cli connect';
 const _vpnDisconnect = 'warp-cli disconnect';
