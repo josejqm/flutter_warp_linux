@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'constants/sizes.dart';
 import 'constants/themes.dart';
-import 'simple_bloc_observer.dart';
-import 'src/features/warp_menu/presentation/page/warp_page.dart';
+import 'business_logic/simple_bloc_observer.dart';
+import 'presentation/pages/warp_page.dart';
 
 Future<void> main() async {
   //WidgetsFlutterBinding.ensureInitialized();
