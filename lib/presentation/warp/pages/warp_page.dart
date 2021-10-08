@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/impl/warp_repository.dart';
+import '../../../data/impl/warp_repository_impl.dart';
 
 import '../connection_checker_cubit/connectivity_cubit.dart';
 import '../views/warp_view.dart';

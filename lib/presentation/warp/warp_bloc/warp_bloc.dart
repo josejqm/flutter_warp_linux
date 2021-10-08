@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/impl/warp_repository.dart';
+import 'package:flutter_warp_linux/domain/exceptions/warp_exception.dart';
+import '../../../data/impl/warp_repository_impl.dart';
 
 import 'warp_event.dart';
 import 'warp_state.dart';
@@ -21,6 +22,7 @@ class WarpBloc extends Bloc<WarpEvent, WarpState> {
     });
     _checkWarpConnection();
   }
+
   final WarpRepositoryImpl warpRepository;
 
   Future<void> _checkWarpConnection() async {
@@ -43,8 +45,10 @@ class WarpBloc extends Bloc<WarpEvent, WarpState> {
       if (status.isConnected) {
         emit(WarpState.connected(status.ip));
       }
-    } on SocketException catch (e) {
-      emit(WarpState.failed(e.message));
+    } on WarpException catch (e) {
+      if (e.error == WarpError.timeout) {
+        emit(const WarpState.failed("Timeout"));
+      }
     }
   }
 

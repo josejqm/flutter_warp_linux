@@ -1,5 +1,3 @@
-
-
 import 'package:process_run/shell.dart';
 
 import '../../domain/exceptions/warp_exception.dart';
@@ -31,23 +29,4 @@ class WarpRepositoryImpl extends WarpRepository {
     final ip = response.outLines.firstWhere((l) => l.startsWith("ip"));
     return WarpStatus(ip: ip, isConnected: isConnected);
   }
-
-  // @override
-  // Future<bool> isConnected() async {
-  //   final response = await _shell.run(_vpnCheck).timeout(
-  //     const Duration(seconds: 10),
-  //     onTimeout: () {
-  //       throw const SocketException("Error timeout");
-  //     },
-  //   );
-  //   return response.outText.contains('warp=on');
-  // }
-
-  // @override
-  // Future<String> getIp() async {
-  //   final response = await _shell.run(_vpnCheck);
-  //   final ip =
-  //       response.outLines.firstWhere((element) => element.startsWith("ip"));
-  //   return ip;
-  // }
 }
