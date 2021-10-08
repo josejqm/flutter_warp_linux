@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../business_logic/warp_bloc/warp_bloc.dart';
+import '../warp_bloc/warp_bloc.dart';
 
 class ConnectingLoader extends StatelessWidget {
   const ConnectingLoader({

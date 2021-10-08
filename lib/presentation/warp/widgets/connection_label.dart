@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../business_logic/warp_bloc/warp_bloc.dart';
-import '../../business_logic/warp_bloc/warp_state.dart';
-import '../../constants/messages.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../constants/messages.dart';
+import '../warp_bloc/warp_bloc.dart';
 
 class ConnectionLabel extends StatelessWidget {
   const ConnectionLabel({Key? key}) : super(key: key);

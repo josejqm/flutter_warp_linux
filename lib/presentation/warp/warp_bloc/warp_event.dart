@@ -6,5 +6,6 @@ part 'warp_event.freezed.dart';
 @freezed
 abstract class WarpEvent with _$WarpEvent {
   const factory WarpEvent.connect() = _Connect;
+
   const factory WarpEvent.disconnect() = _Disconnect;
 }

@@ -1,5 +1,8 @@
-import '../../business_logic/connection_checker_cubit/connectivity_cubit.dart';
-import '../../business_logic/connection_checker_cubit/connectivity_state.dart';
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../connection_checker_cubit/connectivity_cubit.dart';
+
 import '../widgets/ip_label.dart';
 import 'connecting_view.dart';
 import 'offline_view.dart';

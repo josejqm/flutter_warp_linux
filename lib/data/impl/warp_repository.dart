@@ -1,9 +1,10 @@
-import 'dart:io';
+
 
 import 'package:process_run/shell.dart';
 
-import '../warp_repository_i.dart';
-import '../warp_status.dart';
+import '../../domain/exceptions/warp_exception.dart';
+import '../../domain/models/warp_status.dart';
+import '../repositories/warp_repository.dart';
 
 const _vpnConnect = 'warp-cli connect';
 const _vpnDisconnect = 'warp-cli disconnect';
@@ -23,7 +24,7 @@ class WarpRepositoryImpl extends WarpRepository {
     final response = await _shell.run(_vpnCheck).timeout(
       const Duration(seconds: 10),
       onTimeout: () {
-        throw const SocketException("Error timeout");
+        throw const WarpException(WarpError.timeout);
       },
     );
     final isConnected = response.outText.contains('warp=on');

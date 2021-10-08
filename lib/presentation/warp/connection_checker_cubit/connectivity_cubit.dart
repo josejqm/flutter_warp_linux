@@ -14,10 +14,11 @@ class ConnectivityCubit extends Cubit<ConnectivityState> {
         _connectivity.onConnectivityChanged.listen(_checkConnection);
   }
 
-  late StreamSubscription _connectivitySubscription;
-  final _connectivity = Connectivity();
   final InternetConnectionChecker _connectionChecker =
       InternetConnectionChecker();
+
+  final _connectivity = Connectivity();
+  late StreamSubscription _connectivitySubscription;
 
   @override
   Future<void> close() {

@@ -59,7 +59,7 @@ dev_dependencies:
 
 
 flutter_gen:
-  output: lib/src/presentation/app/assets # Optional (default: lib/gen/)
+  output: lib/src/constants/ # Optional (default: lib/gen/)
   lineLength: 80 # Optional (default: 80)
 
 # For information on the generic Dart part of this file, see the
@@ -73,6 +73,7 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/svg/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

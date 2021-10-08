@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../data/impl/warp_repository.dart';
 
-import '../repository/warp_repository.dart';
 import 'warp_event.dart';
 import 'warp_state.dart';
 
@@ -11,7 +11,8 @@ export 'warp_event.dart';
 export 'warp_state.dart';
 
 class WarpBloc extends Bloc<WarpEvent, WarpState> {
-  WarpBloc(this.warpRepository) : super(WarpState.disconnected("Unknow")) {
+  WarpBloc(this.warpRepository)
+      : super(const WarpState.disconnected("Unknow")) {
     on<WarpEvent>((event, emit) async {
       await event.when(
         connect: () => _onConnect(emit),

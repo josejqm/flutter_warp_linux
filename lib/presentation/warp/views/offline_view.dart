@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../constants/messages.dart';
+import 'package:flutter_svg/svg.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/messages.dart';
 
 class OfflineView extends StatelessWidget {
   const OfflineView({Key? key}) : super(key: key);

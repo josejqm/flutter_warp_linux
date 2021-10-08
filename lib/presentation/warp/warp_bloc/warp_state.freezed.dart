@@ -169,7 +169,7 @@ class _$WarpStateConnectedCopyWithImpl<$Res>
 class _$WarpStateConnected
     with DiagnosticableTreeMixin
     implements WarpStateConnected {
-  _$WarpStateConnected(this.ip);
+  const _$WarpStateConnected(this.ip);
 
   @override
   final String ip;
@@ -292,7 +292,7 @@ class _$WarpStateConnected
 }
 
 abstract class WarpStateConnected implements WarpState {
-  factory WarpStateConnected(String ip) = _$WarpStateConnected;
+  const factory WarpStateConnected(String ip) = _$WarpStateConnected;
 
   String get ip => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -337,7 +337,7 @@ class _$WarpStateDisconnectedCopyWithImpl<$Res>
 class _$WarpStateDisconnected
     with DiagnosticableTreeMixin
     implements WarpStateDisconnected {
-  _$WarpStateDisconnected(this.ip);
+  const _$WarpStateDisconnected(this.ip);
 
   @override
   final String ip;
@@ -461,7 +461,7 @@ class _$WarpStateDisconnected
 }
 
 abstract class WarpStateDisconnected implements WarpState {
-  factory WarpStateDisconnected(String ip) = _$WarpStateDisconnected;
+  const factory WarpStateDisconnected(String ip) = _$WarpStateDisconnected;
 
   String get ip => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -505,7 +505,7 @@ class _$WarpStateFailedCopyWithImpl<$Res> extends _$WarpStateCopyWithImpl<$Res>
 class _$WarpStateFailed
     with DiagnosticableTreeMixin
     implements WarpStateFailed {
-  _$WarpStateFailed(this.errorMessage);
+  const _$WarpStateFailed(this.errorMessage);
 
   @override
   final String errorMessage;
@@ -629,7 +629,7 @@ class _$WarpStateFailed
 }
 
 abstract class WarpStateFailed implements WarpState {
-  factory WarpStateFailed(String errorMessage) = _$WarpStateFailed;
+  const factory WarpStateFailed(String errorMessage) = _$WarpStateFailed;
 
   String get errorMessage => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)

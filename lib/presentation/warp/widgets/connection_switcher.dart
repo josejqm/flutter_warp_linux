@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../business_logic/warp_bloc/warp_bloc.dart';
-
+import 'package:flutter_switch/flutter_switch.dart';
+import '../warp_bloc/warp_bloc.dart';
 
 class ConnectionSwitcher extends StatelessWidget {
   const ConnectionSwitcher({Key? key}) : super(key: key);

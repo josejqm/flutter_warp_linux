@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
-import '../../constants/assets.dart';
+import '../../../constants/assets.dart';
+
 import '../widgets/connecting_loader.dart';
 import '../widgets/connection_label.dart';
 import '../widgets/connection_switcher.dart';
@@ -38,5 +37,3 @@ class WarpSwitch extends StatelessWidget {
     );
   }
 }
-
-

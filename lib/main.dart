@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'constants/sizes.dart';
 import 'constants/themes.dart';
-import 'business_logic/simple_bloc_observer.dart';
-import 'presentation/pages/warp_page.dart';
+import 'presentation/warp/pages/warp_page.dart';
+import 'simple_bloc_observer.dart';
 
 Future<void> main() async {
   //WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +13,6 @@ Future<void> main() async {
 
   runApp(EasyDynamicThemeWidget(child: const MyApp()));
 
-  
   await DesktopWindow.setMinWindowSize(WindowSize.size);
   // await DesktopWindow.setMaxWindowSize(WindowSize.size);
 }
