@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:process_run/shell.dart';
 
-import 'warp_repository_i.dart';
-import 'warp_status.dart';
+import '../warp_repository_i.dart';
+import '../warp_status.dart';
 
 const _vpnConnect = 'warp-cli connect';
 const _vpnDisconnect = 'warp-cli disconnect';
