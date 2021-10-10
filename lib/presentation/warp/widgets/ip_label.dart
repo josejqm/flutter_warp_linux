@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../constants/messages.dart';
 import '../../../constants/themes.dart';
 import '../connection_checker_cubit/connectivity_cubit.dart';
-import '../warp_bloc/warp_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../warp_cubit/warp_cubit.dart';
 
 class IPLabel extends StatelessWidget {
   const IPLabel({
@@ -31,7 +32,7 @@ class _IPLabelView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WarpBloc, WarpState>(
+    return BlocBuilder<WarpCubit, WarpState>(
       builder: (context, state) {
         late Color color;
         late String ip;
