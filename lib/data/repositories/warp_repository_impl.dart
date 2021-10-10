@@ -1,8 +1,8 @@
 import 'package:process_run/shell.dart';
 
 import '../../domain/exceptions/warp_exception.dart';
-import '../../domain/models/warp_status.dart';
-import '../repositories/warp_repository.dart';
+import '../../domain/repositories/warp_repository.dart';
+import '../models/warp_status.dart';
 
 const _vpnConnect = 'warp-cli connect';
 const _vpnDisconnect = 'warp-cli disconnect';
@@ -18,15 +18,14 @@ class WarpRepositoryImpl extends WarpRepository {
   Future<void> disconnect() async => _shell.run(_vpnDisconnect);
 
   @override
-  Future<WarpStatus> getWarpStatus() async {
+  Future<WarpStatus?> getWarpStatus() async {
     final response = await _shell.run(_vpnCheck).timeout(
       const Duration(seconds: 10),
       onTimeout: () {
         throw const WarpException(WarpError.timeout);
       },
     );
-    final isConnected = response.outText.contains('warp=on');
-    final ip = response.outLines.firstWhere((l) => l.startsWith("ip"));
-    return WarpStatus(ip: ip, isConnected: isConnected);
+
+    return WarpStatus.fromResponse(response);
   }
 }
