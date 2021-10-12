@@ -33,7 +33,7 @@ class WarpView extends StatelessWidget {
           return state.when(
             connected: () => const WarpSwitch(),
             disconnected: () => const OfflineView(),
-            connecting: () => const ConnectingView(),
+            checking: () => const CheckingConnectionView(),
           );
         },
       ),

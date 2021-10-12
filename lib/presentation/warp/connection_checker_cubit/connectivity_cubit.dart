@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-import 'connectivity_state.dart';
+part 'connectivity_cubit.freezed.dart';
+part 'connectivity_state.dart';
 
-export 'connectivity_state.dart';
 
 class ConnectivityCubit extends Cubit<ConnectivityState> {
   ConnectivityCubit() : super(const ConnectivityState.disconnected()) {
@@ -27,7 +28,7 @@ class ConnectivityCubit extends Cubit<ConnectivityState> {
   }
 
   Future<void> _checkConnection(ConnectivityResult connectivityResult) async {
-    emit(const ConnectivityState.connecting());
+    emit(const ConnectivityState.checking());
     if (connectivityResult == ConnectivityResult.none) {
       emit(const ConnectivityState.disconnected());
     } else {

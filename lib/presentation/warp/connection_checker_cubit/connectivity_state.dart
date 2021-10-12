@@ -1,13 +1,10 @@
-import 'package:flutter/foundation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'connectivity_state.freezed.dart';
+part of 'connectivity_cubit.dart';
 
 @freezed
-abstract class ConnectivityState with _$ConnectivityState {
+class ConnectivityState with _$ConnectivityState {
   const factory ConnectivityState.connected() = _Online;
 
-  const factory ConnectivityState.connecting() = _Connecting;
+  const factory ConnectivityState.checking() = _Checking;
 
   const factory ConnectivityState.disconnected() = _Offline;
 }
