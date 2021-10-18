@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/impl/warp_repository_impl.dart';
-
+import '../../../injector.dart';
 import '../connection_checker_cubit/connectivity_cubit.dart';
 import '../views/warp_view.dart';
-import '../warp_bloc/warp_bloc.dart';
+import '../warp_cubit/warp_cubit.dart';
 
 class WarpPage extends StatelessWidget {
   const WarpPage({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class WarpPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ConnectivityCubit()),
-        BlocProvider(create: (_) => WarpBloc(WarpRepositoryImpl())),
+        BlocProvider(create: (_) => WarpCubit(injector())..checkConnection()),
       ],
       child: const WarpView(),
     );

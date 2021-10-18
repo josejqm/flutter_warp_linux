@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import '../warp_bloc/warp_bloc.dart';
+
+import '../warp_cubit/warp_cubit.dart';
 
 class ConnectionSwitcher extends StatelessWidget {
   const ConnectionSwitcher({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<WarpBloc, WarpState>(
+    return BlocConsumer<WarpCubit, WarpState>(
       listener: (context, state) {
         state.maybeWhen(
           failed: (message) => _showError(context, message),
@@ -22,8 +23,7 @@ class ConnectionSwitcher extends StatelessWidget {
           toggleSize: 50,
           borderRadius: 30,
           activeColor: Theme.of(context).primaryColor,
-          onToggle: (_) =>
-              BlocProvider.of<WarpBloc>(context).toogleConnection(),
+          onToggle: (_) => context.read<WarpCubit>().toogleConnection(),
           value: state is WarpStateConnected,
         );
       },

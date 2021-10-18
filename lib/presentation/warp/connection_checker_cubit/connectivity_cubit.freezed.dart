@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'connectivity_state.dart';
+part of 'connectivity_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -21,8 +21,8 @@ class _$ConnectivityStateTearOff {
     return const _Online();
   }
 
-  _Connecting connecting() {
-    return const _Connecting();
+  _Checking checking() {
+    return const _Checking();
   }
 
   _Offline disconnected() {
@@ -38,21 +38,21 @@ mixin _$ConnectivityState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() connected,
-    required TResult Function() connecting,
+    required TResult Function() checking,
     required TResult Function() disconnected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? connected,
-    TResult Function()? connecting,
+    TResult Function()? checking,
     TResult Function()? disconnected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connected,
-    TResult Function()? connecting,
+    TResult Function()? checking,
     TResult Function()? disconnected,
     required TResult orElse(),
   }) =>
@@ -60,21 +60,21 @@ mixin _$ConnectivityState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Online value) connected,
-    required TResult Function(_Connecting value) connecting,
+    required TResult Function(_Checking value) checking,
     required TResult Function(_Offline value) disconnected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Online value)? connected,
-    TResult Function(_Connecting value)? connecting,
+    TResult Function(_Checking value)? checking,
     TResult Function(_Offline value)? disconnected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Online value)? connected,
-    TResult Function(_Connecting value)? connecting,
+    TResult Function(_Checking value)? checking,
     TResult Function(_Offline value)? disconnected,
     required TResult orElse(),
   }) =>
@@ -116,18 +116,12 @@ class __$OnlineCopyWithImpl<$Res> extends _$ConnectivityStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Online with DiagnosticableTreeMixin implements _Online {
+class _$_Online implements _Online {
   const _$_Online();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'ConnectivityState.connected()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'ConnectivityState.connected'));
   }
 
   @override
@@ -142,7 +136,7 @@ class _$_Online with DiagnosticableTreeMixin implements _Online {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() connected,
-    required TResult Function() connecting,
+    required TResult Function() checking,
     required TResult Function() disconnected,
   }) {
     return connected();
@@ -152,7 +146,7 @@ class _$_Online with DiagnosticableTreeMixin implements _Online {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? connected,
-    TResult Function()? connecting,
+    TResult Function()? checking,
     TResult Function()? disconnected,
   }) {
     return connected?.call();
@@ -162,7 +156,7 @@ class _$_Online with DiagnosticableTreeMixin implements _Online {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connected,
-    TResult Function()? connecting,
+    TResult Function()? checking,
     TResult Function()? disconnected,
     required TResult orElse(),
   }) {
@@ -176,7 +170,7 @@ class _$_Online with DiagnosticableTreeMixin implements _Online {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Online value) connected,
-    required TResult Function(_Connecting value) connecting,
+    required TResult Function(_Checking value) checking,
     required TResult Function(_Offline value) disconnected,
   }) {
     return connected(this);
@@ -186,7 +180,7 @@ class _$_Online with DiagnosticableTreeMixin implements _Online {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Online value)? connected,
-    TResult Function(_Connecting value)? connecting,
+    TResult Function(_Checking value)? checking,
     TResult Function(_Offline value)? disconnected,
   }) {
     return connected?.call(this);
@@ -196,7 +190,7 @@ class _$_Online with DiagnosticableTreeMixin implements _Online {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Online value)? connected,
-    TResult Function(_Connecting value)? connecting,
+    TResult Function(_Checking value)? checking,
     TResult Function(_Offline value)? disconnected,
     required TResult orElse(),
   }) {
@@ -212,44 +206,35 @@ abstract class _Online implements ConnectivityState {
 }
 
 /// @nodoc
-abstract class _$ConnectingCopyWith<$Res> {
-  factory _$ConnectingCopyWith(
-          _Connecting value, $Res Function(_Connecting) then) =
-      __$ConnectingCopyWithImpl<$Res>;
+abstract class _$CheckingCopyWith<$Res> {
+  factory _$CheckingCopyWith(_Checking value, $Res Function(_Checking) then) =
+      __$CheckingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ConnectingCopyWithImpl<$Res>
+class __$CheckingCopyWithImpl<$Res>
     extends _$ConnectivityStateCopyWithImpl<$Res>
-    implements _$ConnectingCopyWith<$Res> {
-  __$ConnectingCopyWithImpl(
-      _Connecting _value, $Res Function(_Connecting) _then)
-      : super(_value, (v) => _then(v as _Connecting));
+    implements _$CheckingCopyWith<$Res> {
+  __$CheckingCopyWithImpl(_Checking _value, $Res Function(_Checking) _then)
+      : super(_value, (v) => _then(v as _Checking));
 
   @override
-  _Connecting get _value => super._value as _Connecting;
+  _Checking get _value => super._value as _Checking;
 }
 
 /// @nodoc
 
-class _$_Connecting with DiagnosticableTreeMixin implements _Connecting {
-  const _$_Connecting();
+class _$_Checking implements _Checking {
+  const _$_Checking();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ConnectivityState.connecting()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ConnectivityState.connecting'));
+  String toString() {
+    return 'ConnectivityState.checking()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Connecting);
+    return identical(this, other) || (other is _Checking);
   }
 
   @override
@@ -259,32 +244,32 @@ class _$_Connecting with DiagnosticableTreeMixin implements _Connecting {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() connected,
-    required TResult Function() connecting,
+    required TResult Function() checking,
     required TResult Function() disconnected,
   }) {
-    return connecting();
+    return checking();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? connected,
-    TResult Function()? connecting,
+    TResult Function()? checking,
     TResult Function()? disconnected,
   }) {
-    return connecting?.call();
+    return checking?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connected,
-    TResult Function()? connecting,
+    TResult Function()? checking,
     TResult Function()? disconnected,
     required TResult orElse(),
   }) {
-    if (connecting != null) {
-      return connecting();
+    if (checking != null) {
+      return checking();
     }
     return orElse();
   }
@@ -293,39 +278,39 @@ class _$_Connecting with DiagnosticableTreeMixin implements _Connecting {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Online value) connected,
-    required TResult Function(_Connecting value) connecting,
+    required TResult Function(_Checking value) checking,
     required TResult Function(_Offline value) disconnected,
   }) {
-    return connecting(this);
+    return checking(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Online value)? connected,
-    TResult Function(_Connecting value)? connecting,
+    TResult Function(_Checking value)? checking,
     TResult Function(_Offline value)? disconnected,
   }) {
-    return connecting?.call(this);
+    return checking?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Online value)? connected,
-    TResult Function(_Connecting value)? connecting,
+    TResult Function(_Checking value)? checking,
     TResult Function(_Offline value)? disconnected,
     required TResult orElse(),
   }) {
-    if (connecting != null) {
-      return connecting(this);
+    if (checking != null) {
+      return checking(this);
     }
     return orElse();
   }
 }
 
-abstract class _Connecting implements ConnectivityState {
-  const factory _Connecting() = _$_Connecting;
+abstract class _Checking implements ConnectivityState {
+  const factory _Checking() = _$_Checking;
 }
 
 /// @nodoc
@@ -346,19 +331,12 @@ class __$OfflineCopyWithImpl<$Res> extends _$ConnectivityStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Offline with DiagnosticableTreeMixin implements _Offline {
+class _$_Offline implements _Offline {
   const _$_Offline();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'ConnectivityState.disconnected()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ConnectivityState.disconnected'));
   }
 
   @override
@@ -373,7 +351,7 @@ class _$_Offline with DiagnosticableTreeMixin implements _Offline {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() connected,
-    required TResult Function() connecting,
+    required TResult Function() checking,
     required TResult Function() disconnected,
   }) {
     return disconnected();
@@ -383,7 +361,7 @@ class _$_Offline with DiagnosticableTreeMixin implements _Offline {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? connected,
-    TResult Function()? connecting,
+    TResult Function()? checking,
     TResult Function()? disconnected,
   }) {
     return disconnected?.call();
@@ -393,7 +371,7 @@ class _$_Offline with DiagnosticableTreeMixin implements _Offline {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connected,
-    TResult Function()? connecting,
+    TResult Function()? checking,
     TResult Function()? disconnected,
     required TResult orElse(),
   }) {
@@ -407,7 +385,7 @@ class _$_Offline with DiagnosticableTreeMixin implements _Offline {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Online value) connected,
-    required TResult Function(_Connecting value) connecting,
+    required TResult Function(_Checking value) checking,
     required TResult Function(_Offline value) disconnected,
   }) {
     return disconnected(this);
@@ -417,7 +395,7 @@ class _$_Offline with DiagnosticableTreeMixin implements _Offline {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Online value)? connected,
-    TResult Function(_Connecting value)? connecting,
+    TResult Function(_Checking value)? checking,
     TResult Function(_Offline value)? disconnected,
   }) {
     return disconnected?.call(this);
@@ -427,7 +405,7 @@ class _$_Offline with DiagnosticableTreeMixin implements _Offline {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Online value)? connected,
-    TResult Function(_Connecting value)? connecting,
+    TResult Function(_Checking value)? checking,
     TResult Function(_Offline value)? disconnected,
     required TResult orElse(),
   }) {

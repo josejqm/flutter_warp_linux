@@ -1,10 +1,7 @@
-import 'package:flutter/foundation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'warp_state.freezed.dart';
+part of 'warp_cubit.dart';
 
 @freezed
-abstract class WarpState with _$WarpState {
+class WarpState with _$WarpState {
   const factory WarpState.checking() = WarpStateChecking;
 
   const factory WarpState.connected(String ip) = WarpStateConnected;

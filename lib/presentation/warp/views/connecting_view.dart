@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-
-class ConnectingView extends StatelessWidget {
-  const ConnectingView({
+class CheckingConnectionView extends StatelessWidget {
+  const CheckingConnectionView({
     Key? key,
   }) : super(key: key);
 

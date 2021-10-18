@@ -4,12 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'constants/sizes.dart';
 import 'constants/themes.dart';
+import 'injector.dart';
 import 'presentation/warp/pages/warp_page.dart';
 import 'simple_bloc_observer.dart';
 
 Future<void> main() async {
-  //WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
+
+  await initializeDependencies();
 
   runApp(EasyDynamicThemeWidget(child: const MyApp()));
 
